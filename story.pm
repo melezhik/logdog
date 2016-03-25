@@ -20,7 +20,7 @@ for my $l (split "\n", $out ){
 
   my $t = Time::Piece->strptime( $time_str, $time_fmt );
 
-  set_stdout( $t->strftime("%a, %d %b %Y") );
+  set_stdout( $t->strftime($time_fmt) );
 
 }
 

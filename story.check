@@ -22,17 +22,21 @@ code: \
 
 if ( our $LINES_CNT > 0 ) { \
 
-        note explain stream(); \
-
+        # note explain stream(); \
+        my %groups; \
         my $i = 0;  \
         for my $s (@{stream()}) {           \
             $i++; \
-            note "# steam # $i \n";          \
             for my $i (@{$s}){               \
-                note $i;                     \
+              my $patt = config()->{logdog}->{key_field}; \
+              my $re = qr/$patt/; \
+              $i=~$re and $groups{$1}++;  \
+
             }                               \
             print "\n";                     \
         }                                   \
+
+      note explain \%groups \
 }
 
 

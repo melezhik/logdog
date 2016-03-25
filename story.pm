@@ -3,8 +3,11 @@ use DateTime;
 
 my $out = <<HERE;
 sequence_number=12345,remote_client=sapserver,2016-03-25 13:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
-sequence_number=12345,remote_client=sapserver,2016-03-18 03:29:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=valid Password
-sequence_number=12345,remote_client=sapserver,2016-03-25 13:36:00:782 EDT,messageID=1002,user=jdoe2@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=valid Password
+sequence_number=12345,remote_client=sapserver,2016-03-25 13:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
+sequence_number=12345,remote_client=sapserver,2016-03-25 13:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
+sequence_number=12345,remote_client=sapserver,2016-03-25 13:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
+sequence_number=12345,remote_client=sapserver,2016-03-25 13:36:44:782 EDT,messageID=1002,user=jdoe4@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
+sequence_number=12345,remote_client=sapserver,2016-03-25 13:36:44:782 EDT,messageID=1002,user=jdoe3@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=5,result_action=Login Failure,result_reason=Invalid Password
 HERE
 
 my $cnt;

@@ -36,10 +36,10 @@ if ( our $LINES_CNT > 0 ) { \
 
       use Term::ANSIColor; \
 
-      for my $g (keys %groups) {                                        \
-        note colored( ['blue' ], "group $g count: $groups{$g}->{cnt}"); \
-        note colored( ['green'], "group $g lines: ".(join "\n", @{$groups{$g}->{lines}})); \
-      }                                                               \
+      for my $g (keys %groups) {                                                \
+        note colored( ['blue' ], "group $g count: $groups{$g}->{cnt}");         \
+        note join "\n", map { colored(['green'],$_), } @{$groups{$g}->{lines}}; \
+      }                                                                         \
 }
 
 

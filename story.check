@@ -1,2 +1,38 @@
-2016
+regexp: lines count: (\d+)
+code: our $LINES_CNT = capture()->[0]; note "lines count: $LINES_CNT";
+
+generator:  \
+
+our $LINES_CNT; \
+my $list = [];  \
+
+if ($LINES_CNT>0){ \
+
+    push @$list, (  \
+      'between: line_start line_end', \
+      'regexp: '.(config()->{logdog}->{filter}), \
+      'reset_context: ' \
+    ); \
+} \
+
+$list
+
+
+code: \
+
+if ( our $LINES_CNT > 0 ) { \
+
+        note explain stream(); \
+
+        my $i = 0;  \
+        for my $s (@{stream()}) {           \
+            $i++; \
+            note "# steam # $i \n";          \
+            for my $i (@{$s}){               \
+                note $i;                     \
+            }                               \
+            print "\n";                     \
+        }                                   \
+}
+
 

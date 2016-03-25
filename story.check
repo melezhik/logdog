@@ -23,23 +23,23 @@ if ( our $LINES_CNT > 0 ) { \
 
   
         #note explain stream(); \
-        my %groups; \
-        my $i = 0;  \
+        my %groups;                         \
+        my $i = 0;                          \
         for my $s (@{stream()}) {           \
-            $i++; \
-            for my $i (@{$s}){               \
+            $i++;                           \
+            for my $i (@{$s}){                            \
               my $patt = config()->{logdog}->{key_field}; \
-              my $re = qr/$patt/; \
-              $i=~$re and $groups{$1}->{cnt}++; push @{$groups{$1}->{lines}}, $i;  \
+              my $re = qr/$patt/;                         \
+              $i=~$re and $groups{$1}->{cnt}++; push @{$groups{$1}->{lines}}, $i;   \
+            }                                                                       \
+        }                                                                           \
 
-            }                               \
-            print "\n";                     \
-        }                                   \
+      use Term::ANSIColor; \
 
-      for my $g (keys %groups) {     \
-        note "group $g count: $groups{$g}->{cnt}";  \
-        note "group $g lines: ".(join "\n", @{$groups{$g}->{lines}}); \
-      } \
+      for my $g (keys %groups) {                                        \
+        note colored( ['blue' ], "group $g count: $groups{$g}->{cnt}"); \
+        note colored( ['green'], "group $g lines: ".(join "\n", @{$groups{$g}->{lines}})); \
+      }                                                               \
 }
 
 

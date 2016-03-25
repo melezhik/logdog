@@ -6,11 +6,11 @@ sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messag
 sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
 sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
 sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
-sequence_number=12345,remote_client=sapserver,2016-03-25 12:36:44:782 EDT,messageID=1002,user=jdoe4@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
+sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messageID=1002,user=jdoe4@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
 sequence_number=12345,remote_client=sapserver,2016-03-25 12:36:44:782 EDT,messageID=1002,user=jdoe3@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=5,result_action=Login Failure,result_reason=Invalid Password
 HERE
 
-my $cnt;
+my $cnt = 0;
 
 for my $l (split "\n", $out ){
 

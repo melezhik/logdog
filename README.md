@@ -1,0 +1,46 @@
+# SYNOPSIS
+
+Smart beagle to find suspicious entries in your logs.
+
+# INSTALL
+
+   sparrow plg install logdog
+
+# CONFIGURATION
+
+   sparrow project create nginx
+
+   sparrow check add nginx 500-errors
+
+   sparrow check set nginx 500-errors logdog 
+
+   sparrow check ini nginx 500-errors 
+
+      # this is examples of nginx log entries
+      # 127.0.0.1 - - [24/Mar/2016:14:27:17 +0300] "GET / HTTP/1.1" 200 396 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) $
+
+      time_pattern  = \[(\d+\/\S+\/\d+):(\S+)
+      time_format   = %d/%b/%Y %T
+
+      # check logs for last 5 minutes
+      threshold = 5
+
+      # to proper time calculation 
+      # need to know a timezone
+      timezone = Europe/Moscow
+
+      # group found entries by IP address:
+
+      key_field = (\S+?)
+
+      # I need 500 errors
+      filter = HTTP\/(\S+?)"\s+500\s
+    
+
+# USAGE
+
+   sparrow check run nginx 500-errors 
+
+# AUTHOR
+
+Alexey Melezhik

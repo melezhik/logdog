@@ -19,18 +19,23 @@ $list
 
 code: \
 
-if ( our $LINES_CNT > 0 ) { \
+if ( our $LINES_CNT > 0 ) {                  \
 
   
-        #note explain stream(); \
-        my %groups;                         \
-        my $i = 0;                          \
-        for my $s (@{stream()}) {           \
-            $i++;                           \
+        #note explain stream();              \
+        my %groups;                          \
+        my $i = 0;                           \
+        for my $s (@{stream()}) {            \
+            $i++;                            \
             for my $i (@{$s}){                            \
               my $patt = config()->{logdog}->{key_field}; \
               my $re = qr/$patt/;                         \
-              $i=~$re and $groups{$1}->{cnt}++; push @{$groups{$1}->{lines}}, $i;   \
+              my @chunks = $i=~$re;             \
+              if (scalar @chunks){              \
+                  my $key = join ' ', @chunks;  \
+                  $groups{$key}->{cnt}++;       \
+                  push @{$groups{$key}->{lines}}, $i; \   
+               }                                      \
             }                                                                       \
         }                                                                           \
 

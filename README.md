@@ -47,11 +47,10 @@ Smart beagle to find suspicious entries in your logs for period of time.
       timezone = Europe/Moscow
 
       # group found entries by IP address:
-
-      key_field = (\S+?)
+      key_field = (\S+)
 
       # I need 500 errors
-      filter = HTTP\/(\S+?)"\s+500\s
+      filter = HTTP\/\S+?"\s+500\s
     
 
 # USAGE

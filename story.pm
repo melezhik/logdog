@@ -26,10 +26,10 @@ while (my $l  = <LOG>){
   #warn $time_str;
 
   my $t = Time::Piece->strptime( $time_str, $time_fmt );
-
+  my $history = config()->{logdog}->{history} || '1 minutes';
   my $check_date = DateTime->now( 
     time_zone =>  config()->{logdog}->{timezone}
-  )->subtract( minutes => config()->{logdog}->{threshold} );
+  )->subtract( reverse ( split /\s+/, config()->{logdog}->{history} ) );
 
   my $date = DateTime->new(
     year       => $t->year,

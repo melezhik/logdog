@@ -40,17 +40,23 @@ Smart beagle to find suspicious entries in your logs for period of time.
       time_format   = %d/%b/%Y %T
 
       # check logs for last 5 minutes
-      threshold = 5
+      history = 5 minutes
 
       # to proper time calculation 
       # need to know a timezone
       timezone = Europe/Moscow
 
+      # I need 500 errors
+      filter = HTTP\/\S+?"\s+500\s
+
+
       # group found entries by IP address:
       key_field = (\S+)
 
-      # I need 500 errors
-      filter = HTTP\/\S+?"\s+500\s
+
+      # density - is optional parameter
+      # show only groups with entries number more or equal 3 
+      density = 3
     
 
 # USAGE

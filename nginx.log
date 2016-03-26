@@ -1,0 +1,4 @@
+127.0.0.1 - - [25/Mar/2016:14:27:17 +0300] "GET / HTTP/1.1" 200 396 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"
+127.0.0.1 - - [25/Mar/2016:14:27:17 +0300] "GET /favicon.ico HTTP/1.1" 404 151 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"
+127.0.0.1 - - [25/Mar/2016:14:27:17 +0300] "GET /favicon.ico HTTP/1.1" 404 151 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"
+

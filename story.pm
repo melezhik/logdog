@@ -1,25 +1,15 @@
 use Time::Piece;
 use DateTime;
 
-my $out2 = <<HERE;
-sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
-sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
-sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
-sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messageID=1002,user=jdoe@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
-sequence_number=12345,remote_client=sapserver,2016-03-25 11:36:44:782 EDT,messageID=1002,user=jdoe4@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=2,result_action=Login Failure,result_reason=Invalid Password
-sequence_number=12345,remote_client=sapserver,2016-03-25 12:36:44:782 EDT,messageID=1002,user=jdoe3@example.com,client_ip_address=10.129.220.45,client_port=10250,browser_ip_address=x.x.x.x,result_code=5,result_action=Login Failure,result_reason=Invalid Password
-HERE
-
-my $out = <<HERE;
-127.0.0.1 - - [25/Mar/2016:14:27:17 +0300] "GET / HTTP/1.1" 200 396 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"
-127.0.0.1 - - [25/Mar/2016:14:27:17 +0300] "GET /favicon.ico HTTP/1.1" 404 151 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"
-127.0.0.1 - - [25/Mar/2016:14:27:17 +0300] "GET /favicon.ico HTTP/1.1" 404 151 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"
-HERE
-
-
 my $cnt = 0;
 
-for my $l (split "\n", $out ){
+open LOG, config()->{logdog}->{file} or die $!; 
+
+while (my $l  = <LOG>){
+
+  chomp $l;
+
+  next unless $l=~/\S/;
 
   my $tp = config()->{logdog}->{time_pattern};
 
@@ -27,6 +17,8 @@ for my $l (split "\n", $out ){
 
   my @chunks = $l =~ /$re/;
 
+  scalar @chunks or next;
+ 
   my $time_str = join ' ' , @chunks;
 
   my $time_fmt = config()->{logdog}->{time_format};
@@ -51,7 +43,10 @@ for my $l (split "\n", $out ){
 
   #warn $check_date, " ... ", $date;
 
-  if ( DateTime->compare( $check_date , $date ) == -1 ){
+  my $filter = config()->{logdog}->{filter};
+  my $filter_re = qr/$filter/;
+    
+  if ( DateTime->compare( $check_date , $date ) == -1  and $l=~/$filter_re/ ){
     set_stdout('line_start');
     set_stdout($l);
     set_stdout('line_end');

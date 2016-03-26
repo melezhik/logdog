@@ -1,6 +1,6 @@
 # SYNOPSIS
 
-Smart beagle to find suspicious entries in your logs.
+Smart beagle to find suspicious entries in your logs for period of time.
 
 # INSTALL
 
@@ -16,10 +16,21 @@ Smart beagle to find suspicious entries in your logs.
 
    sparrow check ini nginx 500-errors 
 
-      # this is examples of nginx log entries
-      # 127.0.0.1 - - [24/Mar/2016:14:27:17 +0300] "GET / HTTP/1.1" 200 396 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) $
+      # all the configuration
+      # should be kept under
+      # `logdog' section
 
-      # define how to extract time chunks from your log entries:
+      [logdog]
+
+      # set path to log file
+        
+      file = /var/log/nginx/access.log
+      
+      # this is examples of nginx log entries
+      # 127.0.0.1 - - [24/Mar/2016:14:27:17 +0300] "GET / HTTP/1.1" 200 396 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0)
+
+      # define how to extract time chunks 
+      # from your log entries:
 
       # this should perl regexp:
       time_pattern  = \[(\d+\/\S+\/\d+):(\S+)

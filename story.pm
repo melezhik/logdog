@@ -29,10 +29,10 @@ while (my $l  = <LOG>){
   my $history = config()->{logdog}->{history} || '1 minutes';
   my $check_date = DateTime->now( 
     time_zone =>  config()->{logdog}->{timezone}
-  )->subtract( reverse ( split /\s+/, config()->{logdog}->{history} ) );
+  )->subtract( reverse ( split /\s+/, $history ) );
 
   my $date = DateTime->new(
-    year       => $t->year,
+    year       => ($t->year eq '1970') ? DateTime->now()->year : $t->year,
     month      => $t->mon,
     day        => $t->mday,
     hour       => $t->hour,
@@ -41,7 +41,7 @@ while (my $l  = <LOG>){
     time_zone  => config()->{logdog}->{timezone},
   );
 
-  #warn $check_date, " ... ", $date;
+  Test::More::note("check date: $check_date date: $date") if config()->{logdog}->{debug};
 
   my $filter = config()->{logdog}->{filter};
   my $filter_re = qr/$filter/;

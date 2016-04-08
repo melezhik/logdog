@@ -59,6 +59,19 @@ Smart beagle to find suspicious entries in your logs for period of time.
       density = 3
     
 
+      # check_mode
+
+      # should be one of : zero|one_or_many|report
+      # default value - report
+
+      # group is a found entries grouped by key_field
+
+      # zero - if zero group found test succeed
+      # one_or_many - if one or many groups found - test succeed
+      # report - test succeed always ( report mode - when you don't care whether or not any groups found )
+
+      check_mode = report
+    
 # USAGE
 
    sparrow check run nginx 500-errors 

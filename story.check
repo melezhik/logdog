@@ -9,7 +9,7 @@ generator:  \
 our $LINES_CNT; \
 my $list = [];  \
 
-if ($LINES_CNT>0){ \
+if (our $LINES_CNT>0){ \
 
     push @$list, (  \
       'between: line_start line_end', \
@@ -21,7 +21,7 @@ $list
 
 
 code: \
-
+our $grp_found = 0; \
 if ( our $LINES_CNT > 0 ) {                  \
 
   
@@ -43,11 +43,24 @@ if ( our $LINES_CNT > 0 ) {                  \
         }                                                                           \
 
       use Term::ANSIColor; \
-
       for my $g (grep { $groups{$_}->{cnt} >= (config()->{logdog}->{density} || 1) } keys %groups) {            \
         note colored( ['blue' ], "group $g count: $groups{$g}->{cnt}");         \
         note join "\n", map { colored(['green'],$_), } @{$groups{$g}->{lines}}; \
+        $grp_found++; \
       }                                                                         \
+}
+
+generator: \
+
+our $grp_found; \
+my $check_mode = config()->{logdog}->{check_mode} || 'report'; \
+
+if ($check_mode eq 'one_or_many' ){     \
+    [ qq{validator: [ our \$grp_found > 0, 'one or many groups found']} ] \
+}elsif($check_mode eq 'zero'){ \
+    [ qq{validator: [ our \$grp_found == 0, 'zero groups found']} ] \
+}else{ \
+  [] \
 }
 
 

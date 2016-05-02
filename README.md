@@ -20,7 +20,7 @@ Smart beagle to find suspicious entries in your logs for period of time.
       # should be kept under
       # `logdog' section
 
-      [logdog]
+      <logdog>
 
       # set path to log file
         
@@ -71,6 +71,8 @@ Smart beagle to find suspicious entries in your logs for period of time.
       # report - test succeed always ( report mode - when you don't care whether or not any groups found )
 
       check_mode = report
+
+      </logdog>
     
 # USAGE
 

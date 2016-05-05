@@ -1,7 +1,6 @@
 {
-    "version": "0.0.5.1",
+    "version": "0.0.6.0",
     "name": "logdog",
-    "engine": "generic", 
     "description" : "smart beagle to find suspicious entries in your logs for the period of time",
     "url": "https://github.com/melezhik/logdog.git"
 }
